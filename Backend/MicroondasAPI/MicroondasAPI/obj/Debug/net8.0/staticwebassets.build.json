@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "peAXPpSQk22po0xQOhWG3CZIsb7kja92du16Au8UfaE=",
+  "Source": "MicroondasAPI",
+  "BasePath": "_content/MicroondasAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

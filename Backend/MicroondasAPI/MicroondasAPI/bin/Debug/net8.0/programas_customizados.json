@@ -1,0 +1,74 @@
+[
+  {
+    "Nome": "Pipoca",
+    "Alimento": "Pipoca (de micro-ondas)",
+    "TempoSegundos": 180,
+    "Potencia": 7,
+    "Instrucoes": "Observar o barulho...",
+    "Aquecimento": "P",
+    "IsCustomizado": false
+  },
+  {
+    "Nome": "Leite",
+    "Alimento": "Leite",
+    "TempoSegundos": 300,
+    "Potencia": 5,
+    "Instrucoes": "Cuidado com aquecimento...",
+    "Aquecimento": "L",
+    "IsCustomizado": false
+  },
+  {
+    "Nome": "Carnes de boi",
+    "Alimento": "Carne em peda\u00E7o...",
+    "TempoSegundos": 840,
+    "Potencia": 4,
+    "Instrucoes": "Interrompa o processo...",
+    "Aquecimento": "C",
+    "IsCustomizado": false
+  },
+  {
+    "Nome": "Frango",
+    "Alimento": "Frango (qualquer corte)",
+    "TempoSegundos": 480,
+    "Potencia": 7,
+    "Instrucoes": "Interrompa o processo...",
+    "Aquecimento": "F",
+    "IsCustomizado": false
+  },
+  {
+    "Nome": "Feij\u00E3o",
+    "Alimento": "Feij\u00E3o congelado",
+    "TempoSegundos": 480,
+    "Potencia": 9,
+    "Instrucoes": "Deixe o recipiente destampado...",
+    "Aquecimento": "J",
+    "IsCustomizado": false
+  },
+  {
+    "Nome": "Arroz",
+    "Alimento": "Arroz Integral",
+    "TempoSegundos": 240,
+    "Potencia": 5,
+    "Instrucoes": "",
+    "Aquecimento": "A",
+    "IsCustomizado": true
+  },
+  {
+    "Nome": "Ravioli",
+    "Alimento": "Macarr\u00E3o",
+    "TempoSegundos": 500,
+    "Potencia": 8,
+    "Instrucoes": null,
+    "Aquecimento": "R",
+    "IsCustomizado": true
+  },
+  {
+    "Nome": "Macarr\u00E3o",
+    "Alimento": "Macarr\u00E3o",
+    "TempoSegundos": 100,
+    "Potencia": 10,
+    "Instrucoes": "",
+    "Aquecimento": "M",
+    "IsCustomizado": true
+  }
+]

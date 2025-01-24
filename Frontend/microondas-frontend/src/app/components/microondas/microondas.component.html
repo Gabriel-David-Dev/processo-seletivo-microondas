@@ -1,0 +1,99 @@
+<div class="microondas-container">
+  <h1>Controle do Micro-ondas</h1>
+
+  <div class="controle-e-programas">
+      <div class="controles">
+          <div class="controle-tempo">
+              <label for="tempo">Tempo (em segundos):</label>
+              <input type="number" id="tempo" [(ngModel)]="tempo" placeholder="Digite o tempo" />
+              <div class="teclado-digital">
+                  <button *ngFor="let num of [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]" (click)="adicionarTempo(num)">{{ num }}</button>
+                  <button (click)="limparTempo()">C</button>
+              </div>
+          </div>
+
+          <div class="controle-potencia">
+              <label for="potencia">Potência (em %):</label>
+              <input type="number" id="potencia" [(ngModel)]="potencia" placeholder="Digite a potência" min="1" max="10" />
+              <div class="teclado-digital">
+                  <button *ngFor="let num of [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]" (click)="adicionarPotencia(num)">{{ num }}</button>
+                  <button (click)="limparPotencia()">C</button>
+              </div>
+          </div>
+
+          <div class="controle-botao">
+              <button (click)="ligar()">Ligar</button>
+              <button (click)="pausarCancelar()">Pausar/Cancelar</button>
+              <button (click)="abrirModalCadastro()">Cadastrar Programa</button> <!— Botão para abrir o modal -->
+          </div>
+      </div>
+
+      <div class="programas-predefinidos">
+          <div *ngFor="let programa of programasPreDefinidos">
+              <button (click)="ligarComAtalho(programa.aquecimento)" [ngClass]="{'programa-customizado': programa.isCustomizado}">
+                  {{ programa.nome }} ({{programa.aquecimento}})
+              </button>
+          </div>
+      </div>
+  </div>
+
+  <div class="estado">
+      <h2>Estado do Micro-ondas: {{ estado }}</h2>
+      <p *ngIf="microondasEmExecucao">Processando: {{ stringProcessamento }}</p>
+  </div>
+
+  <!--Formulario-->
+
+  <div class="modal" [ngClass]="{'show': modalAberto}">
+      <div class="modal-content">
+          <span class="close" (click)="fecharModalCadastro()">&times;</span>
+          <h2>Cadastrar Atalho Customizado</h2>
+          <form [formGroup]="programaForm" (ngSubmit)="cadastrarPrograma()">
+              <div class="form-group">
+                  <label for="nome">Nome:</label>
+                  <input type="text" id="nome" formControlName="nome" class="form-control">
+                  <div *ngIf="programaForm.get('nome')?.invalid && (programaForm.get('nome')?.dirty || programaForm.get('nome')?.touched)">
+                      <small *ngIf="programaForm.get('nome')?.errors?.['required']" class="text-danger">Nome é obrigatório.</small>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="alimento">Alimento:</label>
+                  <input type="text" id="alimento" formControlName="alimento" class="form-control">
+                  <div *ngIf="programaForm.get('alimento')?.invalid && (programaForm.get('alimento')?.dirty || programaForm.get('alimento')?.touched)">
+                      <small *ngIf="programaForm.get('alimento')?.errors?.['required']" class="text-danger">Alimento é obrigatório.</small>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="tempoSegundos">Tempo (segundos):</label>
+                  <input type="number" id="tempoSegundos" formControlName="tempoSegundos" class="form-control">
+                  <div *ngIf="programaForm.get('tempoSegundos')?.invalid && (programaForm.get('tempoSegundos')?.dirty || programaForm.get('tempoSegundos')?.touched)">
+                      <small *ngIf="programaForm.get('tempoSegundos')?.errors?.['required']" class="text-danger">Tempo é obrigatório.</small>
+                      <small *ngIf="programaForm.get('tempoSegundos')?.errors?.['min']" class="text-danger">Tempo mínimo é 1 segundo.</small>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="potencia">Potência:</label>
+                  <input type="number" id="potencia" formControlName="potencia" min="1" max="10" class="form-control">
+                  <div *ngIf="programaForm.get('potencia')?.invalid && (programaForm.get('potencia')?.dirty || programaForm.get('potencia')?.touched)">
+                      <small *ngIf="programaForm.get('potencia')?.errors?.['required']" class="text-danger">Potência é obrigatória.</small>
+                      <small *ngIf="programaForm.get('potencia')?.errors?.['min']" class="text-danger">Potência mínima é 1.</small>
+                      <small *ngIf="programaForm.get('potencia')?.errors?.['max']" class="text-danger">Potência máxima é 10.</small>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="instrucoes">Instruções (opcional):</label>
+                  <textarea id="instrucoes" formControlName="instrucoes" class="form-control"></textarea>
+              </div>
+               <div class="form-group">
+                  <label for="aquecimento">Aquecimento (uma letra):</label>
+                  <input type="text" id="aquecimento" formControlName="aquecimento" maxlength="1" class="form-control">
+                  <div *ngIf="programaForm.get('aquecimento')?.invalid && (programaForm.get('aquecimento')?.dirty || programaForm.get('aquecimento')?.touched)">
+                      <small *ngIf="programaForm.get('aquecimento')?.errors?.['required']" class="text-danger">Aquecimento é obrigatório.</small>
+                      <small *ngIf="programaForm.get('aquecimento')?.errors?.['pattern']" class="text-danger">Apenas uma letra é permitida.</small>
+                  </div>
+              </div>
+              <button type="submit" [disabled]="!programaForm.valid" class="btn btn-primary">Cadastrar Atalho</button>
+          </form>
+      </div>
+  </div>
+</div>
